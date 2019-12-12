@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "calculator")
+@ComponentScan(basePackages = "....")
 public class WebConfig {
  
     @Bean

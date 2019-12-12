@@ -23,4 +23,6 @@ public class Goods {
 
     @Column(name = "goods_image")
     private String goodsImage;
+
+
 }
