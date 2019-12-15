@@ -1,13 +1,19 @@
 package services;
 
+import dataBase.UserDAO;
+import dataBase.UserDAOImp;
 import pojo.User;
 
 public class UserServiceImp implements UserService {
-    public User getUser(Long idUser) {
-        return null;
+    UserDAO userDAO;
+
+    public User getUser(String login) {
+        userDAO = new UserDAOImp();
+        return userDAO.getUser(login);
     }
 
-    public boolean createUser(String name, String login, Integer age, String email, String password) {
-        return false;
+    public boolean createUser(User user) {
+        userDAO = new UserDAOImp();
+        return userDAO.createUser(user);
     }
 }
