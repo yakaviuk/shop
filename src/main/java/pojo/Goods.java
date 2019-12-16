@@ -1,6 +1,8 @@
 package pojo;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Goods {
@@ -23,6 +25,9 @@ public class Goods {
 
     @Column(name = "goods_image")
     private String goodsImage;
+
+    @OneToMany(mappedBy = "goods")
+    private List<Order> orders = new ArrayList<>();
 
     public Goods() {
     }

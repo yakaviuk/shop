@@ -1,6 +1,8 @@
 package pojo;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 
@@ -15,6 +17,11 @@ public class User {
     private Integer age;
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "user") //may be "chemodan" as in Order class
+    private List<Order> orders = new ArrayList<>();
+
+
 
     public User() {
     }

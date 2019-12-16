@@ -18,6 +18,15 @@ public class Order {
     @Column(name = "order_status")
     private boolean status;
 
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_user", referencedColumnName = "id_user", insertable = false, updatable = false)
+    User user; //may be "chemodan"
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_order", referencedColumnName = "id_order", insertable = false, updatable = false)
+    Goods goods;
+
     public Order() {
     }
 
