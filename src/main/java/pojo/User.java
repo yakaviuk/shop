@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-
+@Table(name="user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,24 +18,10 @@ public class User {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "user") //may be "chemodan" as in Order class
-    private List<Order> orders = new ArrayList<>();
+//    @OneToMany(mappedBy = "user1",  cascade = CascadeType.ALL, orphanRemoval = true) //may be "chemodan" as in Order class
+//    private List<Order> userList;
 
-
-
-    public User() {
-    }
-
-    public User(String name, String login, Integer age, String email, String password) {
-        this.name = name;
-        this.login = login;
-        this.age = age;
-        this.email = email;
-        this.password = password;
-    }
-
-
-    public Long getIdUser() {
+   public Long getIdUser() {
         return idUser;
     }
 

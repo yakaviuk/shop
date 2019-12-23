@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name="goods")
 public class Goods {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +27,8 @@ public class Goods {
     @Column(name = "goods_image")
     private String goodsImage;
 
-    @OneToMany(mappedBy = "goods")
-    private List<Order> orders = new ArrayList<>();
+//    @OneToMany(mappedBy = "goods")
+//    private List<Order> orders = new ArrayList<>();
 
     public Goods() {
     }

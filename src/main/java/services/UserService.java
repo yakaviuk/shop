@@ -3,7 +3,7 @@ package services;
 import pojo.User;
 
 public interface UserService {
-    User getUser(String login);
+    User getUserService(String login, String password);
     boolean createUser(User user);
 
 }

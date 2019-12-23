@@ -3,60 +3,61 @@ package pojo;
 import javax.persistence.*;
 
 @Entity
+@Table(name="order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_order")
-    private long idOrder;
+    private Long idOrder;
 
     @Column(name = "id_user")
-    private long idUser;
+    private Long idUser;
 
     @Column(name = "id_goods")
-    private long idGoods;
+    private Long idGoods;
 
     @Column(name = "order_status")
     private boolean status;
 
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_user", referencedColumnName = "id_user", insertable = false, updatable = false)
-    User user; //may be "chemodan"
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_order", referencedColumnName = "id_order", insertable = false, updatable = false)
-    Goods goods;
+//    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+//    @JoinColumn(name = "id_user") //, referencedColumnName = "id_user", insertable = false, updatable = false
+//    private User user1;
+//
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "id_order", referencedColumnName = "id_order", insertable = false, updatable = false)
+//    Goods goods;
 
     public Order() {
     }
 
-    public Order(long idUser, long idGoods, boolean status) {
+    public Order(Long idUser, Long idGoods, boolean status) {
         this.idUser = idUser;
         this.idGoods = idGoods;
         this.status = status;
     }
 
-    public long getIdOrder() {
+    public Long getIdOrder() {
         return idOrder;
     }
 
-    public void setIdOrder(long idOrder) {
+    public void setIdOrder(Long idOrder) {
         this.idOrder = idOrder;
     }
 
-    public long getIdUser() {
+    public Long getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(long idUser) {
+    public void setIdUser(Long idUser) {
         this.idUser = idUser;
     }
 
-    public long getIdGoods() {
+    public Long getIdGoods() {
         return idGoods;
     }
 
-    public void setIdGoods(long idGoods) {
+    public void setIdGoods(Long idGoods) {
         this.idGoods = idGoods;
     }
 

@@ -7,9 +7,18 @@ import pojo.User;
 public class UserServiceImp implements UserService {
     UserDAO userDAO;
 
-    public User getUser(String login) {
+    public User getUserService(String login, String password) {
+        System.out.println("First: "+login + " "+password);
         userDAO = new UserDAOImp();
-        return userDAO.getUser(login);
+        User userTemp = userDAO.getUser(login);
+        System.out.println(userTemp);
+        if (login.equals(userTemp.getLogin())&& password.equals(userTemp.getPassword())) {
+
+            return userDAO.getUser(login);
+        } else {
+            return null;
+        }
+
     }
 
     public boolean createUser(User user) {

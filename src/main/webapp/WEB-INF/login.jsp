@@ -3,7 +3,7 @@
 <body>
 <h1>Login page</h1>
 <p>Please fill in this form to login in account.</p>
-<form action="login" method="POST">
+<form action="checklogin" method="POST">
     <label for="login"><b>Login</b></label>
     <input type="text" placeholder="Login" name="login" required>
     <p></p>

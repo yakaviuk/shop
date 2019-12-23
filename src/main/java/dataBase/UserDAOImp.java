@@ -2,6 +2,7 @@ package dataBase;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import pojo.User;
 import util.HibernateUtil;
 
@@ -10,14 +11,19 @@ public class UserDAOImp implements UserDAO {
 
     User user;
     public User getUser(String login) {
-        user = null;
+        System.out.println("DAO: "+login  );
+        user = new User();
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            Query query = session.createQuery("SELECT * FROM User  where login = '"+login+"'");
             user = session.get(User.class, login);
+         //   user = (User) query.getSingleResult();
+            System.out.println("DAO2: "+user);
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            e.printStackTrace();
+            e.printStackaddTrace();
         }
         return user;
     }
