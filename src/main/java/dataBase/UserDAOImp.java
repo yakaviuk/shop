@@ -10,20 +10,17 @@ public class UserDAOImp implements UserDAO {
     private Transaction transaction = null;
 
     User user;
+
     public User getUser(String login) {
-        System.out.println("DAO: "+login  );
         user = new User();
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-
-            Query query = session.createQuery("SELECT * FROM User  where login = '"+login+"'");
-            user = session.get(User.class, login);
-         //   user = (User) query.getSingleResult();
-            System.out.println("DAO2: "+user);
+            Query query = session.createQuery("FROM User  where login = '" + login + "'");
+            user = (User) query.getSingleResult();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            e.printStackaddTrace();
+            e.printStackTrace();
         }
         return user;
     }

@@ -3,7 +3,7 @@
 <body>
 <h1>Register</h1>
 <p>Please fill in this form to create an account.</p>
-<form action="registration" method="POST">
+<form action="checkregistartion" method="POST">
     <label for="name"><b>Name </b></label>
     <input type="text" placeholder="Name" name="name" required>
     <p></p>
@@ -19,8 +19,8 @@
     <label for="password"><b>Password </b></label>
     <input type="password" placeholder="Enter Password" name="password" required>
     <p></p>
-    <label for="psw-repeat"><b>Repeat Password </b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+    <label for="pswRepeat"><b>Repeat Password </b></label>
+    <input type="password" placeholder="Repeat Password" name="pswRepeat" required>
     <p></p>
     <button type="submit" class="registerbtn">Register</button>
 </form>

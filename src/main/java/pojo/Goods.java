@@ -27,8 +27,8 @@ public class Goods {
     @Column(name = "goods_image")
     private String goodsImage;
 
-//    @OneToMany(mappedBy = "goods")
-//    private List<Order> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "goods")
+    private List<Order> orders = new ArrayList<>();
 
     public Goods() {
     }

@@ -18,8 +18,8 @@ public class User {
     private String email;
     private String password;
 
-//    @OneToMany(mappedBy = "user1",  cascade = CascadeType.ALL, orphanRemoval = true) //may be "chemodan" as in Order class
-//    private List<Order> userList;
+    @OneToMany(mappedBy = "user1",  cascade = CascadeType.ALL, orphanRemoval = true) //may be "chemodan" as in Order class
+    private List<Order> userList;
 
    public Long getIdUser() {
         return idUser;

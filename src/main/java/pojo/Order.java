@@ -20,13 +20,13 @@ public class Order {
     private boolean status;
 
 
-//    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-//    @JoinColumn(name = "id_user") //, referencedColumnName = "id_user", insertable = false, updatable = false
-//    private User user1;
-//
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "id_order", referencedColumnName = "id_order", insertable = false, updatable = false)
-//    Goods goods;
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "id_user", insertable = false, updatable = false) //, referencedColumnName = "id_user", insertable = false, updatable = false
+    private User user1;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_order", insertable = false, updatable = false) //, referencedColumnName = "id_order", insertable = false, updatable = false)
+    Goods goods;
 
     public Order() {
     }

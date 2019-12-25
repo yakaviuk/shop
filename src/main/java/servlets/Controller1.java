@@ -34,4 +34,17 @@ public class Controller1 {
             return "faillogin";
         }
     }
+
+    @RequestMapping(value = "/checkregistartion", method = RequestMethod.POST)
+    public String checkRegistartion(@RequestParam(value = "name") String mane, @RequestParam(value = "login") String login,
+                                    @RequestParam(value = "age") Long age, @RequestParam(value = "email") String email,
+                                    @RequestParam(value = "password") String password, @RequestParam(value = "pswRepeat") String pswRepeat) {
+        UserService userService = new UserServiceImp();
+        if (password.equals(pswRepeat)) {
+
+            return "successregistration";
+        } else {
+            return "failinpswrepeat";
+        }
+    }
 }
