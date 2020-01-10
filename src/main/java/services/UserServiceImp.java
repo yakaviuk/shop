@@ -6,7 +6,8 @@ import pojo.User;
 
 public class UserServiceImp implements UserService {
     UserDAO userDAO;
-@Override
+
+    @Override
     public User getUserService(String login, String password) {
         userDAO = new UserDAOImp();
         User userTemp = userDAO.getUser(login);
@@ -15,10 +16,11 @@ public class UserServiceImp implements UserService {
         } else {
             return null;
         }
-
     }
+
     @Override
-    public User getUserServiceCheckIfUserExists (String login) {
+    public User getUserServiceCheckIfUserExists(String login) {
+        //todo
         userDAO = new UserDAOImp();
         User userTemp = userDAO.getUser(login);
         if (login.equals(userTemp.getLogin())) {
@@ -26,8 +28,8 @@ public class UserServiceImp implements UserService {
         } else {
             return null;
         }
-
     }
+
     @Override
     public boolean createUser(User user) {
         userDAO = new UserDAOImp();

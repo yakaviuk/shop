@@ -30,7 +30,7 @@ CREATE TABLE `goods` (
   `country` varchar(45) DEFAULT NULL,
   `goods_image` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_goods`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `goods` (
 
 LOCK TABLES `goods` WRITE;
 /*!40000 ALTER TABLE `goods` DISABLE KEYS */;
+INSERT INTO `goods` (`id_goods`, `goods_name`, `goods_price`, `description`, `country`, `goods_image`) VALUES (1,'ibuprofen',2.4,'painkil','Belarus',NULL),(2,'water',0.4,'H2O','Ukraine',NULL);
 /*!40000 ALTER TABLE `goods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,8 +86,11 @@ CREATE TABLE `user` (
   `age` int(11) DEFAULT NULL,
   `email` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
-  PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id_user`),
+  UNIQUE KEY `login_UNIQUE` (`login`),
+  UNIQUE KEY `id_user_UNIQUE` (`id_user`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,6 +99,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`id_user`, `name`, `login`, `age`, `email`, `password`) VALUES (1,'rob','rob',32,'1@we.com','111'),(2,'2','2',2,'343434','2');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -107,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-12 21:26:50
+-- Dump completed on 2019-12-27 21:41:55

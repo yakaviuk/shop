@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<head>
+    <title>Let's login</title>
+</head>
 <body>
 <h1>Login page</h1>
 <p>Please fill in this form to login in account.</p>
