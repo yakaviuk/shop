@@ -8,8 +8,6 @@ import pojo.User;
 import services.UserService;
 import services.UserServiceImp;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 public class Controller1 {
     @RequestMapping(value = "/")
@@ -62,4 +60,6 @@ public class Controller1 {
             return "failinlogin";
         }
     }
+
+
 }
