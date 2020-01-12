@@ -52,14 +52,12 @@ public class Controller1 {
                     } else {
                         return "failinpswrepeat";
                     }
-
                 } else {
                     return "failinage";
                 }
             } else {
                 return "failinemail";
             }
-//
         } else {
             return "failinlogin";
         }

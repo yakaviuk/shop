@@ -32,9 +32,9 @@ public class UserServiceImp implements UserService {
     @Override
     public User getUserServiceCheckIfUserExistsByEmail(String email) {
         userDAO = new UserDAOImp();
-        User userTemp = userDAO.getUser(email);
-        if (email.equals(userTemp.getLogin())) {
-            return userDAO.getUser(email);
+        User userTemp = userDAO.getUserByEmail(email);
+        if (email.equals(userTemp.getEmail())) {
+            return userDAO.getUserByEmail(email);
         } else {
             return null;
         }
