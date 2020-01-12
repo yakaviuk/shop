@@ -20,11 +20,21 @@ public class UserServiceImp implements UserService {
 
     @Override
     public User getUserServiceCheckIfUserExists(String login) {
-        //todo
         userDAO = new UserDAOImp();
         User userTemp = userDAO.getUser(login);
         if (login.equals(userTemp.getLogin())) {
             return userDAO.getUser(login);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public User getUserServiceCheckIfUserExistsByEmail(String email) {
+        userDAO = new UserDAOImp();
+        User userTemp = userDAO.getUser(email);
+        if (email.equals(userTemp.getLogin())) {
+            return userDAO.getUser(email);
         } else {
             return null;
         }

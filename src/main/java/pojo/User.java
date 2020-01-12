@@ -18,6 +18,17 @@ public class User {
     private String email;
     private String password;
 
+    public User() {
+    }
+
+    public User(String name, String login, Integer age, String email, String password) {
+        this.name = name;
+        this.login = login;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+    }
+
     @OneToMany(mappedBy = "user1",  cascade = CascadeType.ALL, orphanRemoval = true) //may be "chemodan" as in Order class
     private List<Order> userList;
 

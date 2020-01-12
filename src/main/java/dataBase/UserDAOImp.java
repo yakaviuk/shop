@@ -14,7 +14,21 @@ public class UserDAOImp implements UserDAO {
     public User getUser(String login) {
         user = new User();
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query query = session.createQuery("FROM User  where login = '" + login + "'");
+            Query query = session.createQuery("FROM User where login = '" + login + "'");
+            user = (User) query.getSingleResult();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    public User getUserByEmail (String email) {
+        user = new User();
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery("FROM User where email = '" + email + "'");
             user = (User) query.getSingleResult();
         } catch (Exception e) {
             if (transaction != null) {

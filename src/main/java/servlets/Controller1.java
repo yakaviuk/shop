@@ -39,16 +39,27 @@ public class Controller1 {
     }
 
     @RequestMapping(value = "/checkregistartion", method = RequestMethod.POST)
-    public String checkRegistartion(@RequestParam(value = "name") String mane, @RequestParam(value = "login") String login,
-                                    @RequestParam(value = "age") Long age, @RequestParam(value = "email") String email,
+    public String checkRegistartion(@RequestParam(value = "name") String name, @RequestParam(value = "login") String login,
+                                    @RequestParam(value = "age") Integer age, @RequestParam(value = "email") String email,
                                     @RequestParam(value = "password") String password, @RequestParam(value = "pswRepeat") String pswRepeat) {
         UserService userService = new UserServiceImp();
         if (userService.getUserServiceCheckIfUserExists(login) == null) {
-            if (password.equals(pswRepeat)) {
-                return "successregistration";
+            if (userService.getUserServiceCheckIfUserExistsByEmail(email) == null) {
+                if (age >= 18) {
+                    if (password.equals(pswRepeat)) {
+                        userService.createUser(new User(name, login, age, email, password));
+                        return "successregistration";
+                    } else {
+                        return "failinpswrepeat";
+                    }
+
+                } else {
+                    return "failinage";
+                }
             } else {
-                return "failinpswrepeat";
+                return "failinemail";
             }
+//
         } else {
             return "failinlogin";
         }
