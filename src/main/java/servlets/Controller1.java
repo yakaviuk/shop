@@ -5,11 +5,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import pojo.User;
+import services.GoodsService;
+import services.GoodsServiceImp;
 import services.UserService;
 import services.UserServiceImp;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class Controller1 {
+    GoodsService goodsService = new GoodsServiceImp();
+
     @RequestMapping(value = "/")
     public String indexPage() {
         return "index";
@@ -26,10 +32,11 @@ public class Controller1 {
     }
 
     @RequestMapping(value = "/checklogin", method = RequestMethod.POST)
-    public String checklogin(@RequestParam(value = "login") String login, @RequestParam(value = "password") String password) {
+    public String checklogin(@RequestParam(value = "login") String login, @RequestParam(value = "password") String password, HttpServletRequest req) {
         UserService userService = new UserServiceImp();
         User user = userService.getUserService(login, password);
         if (user != null) {
+            req.setAttribute("goodsAll", goodsService.findAll());
             return "goods";
         } else {
             return "faillogin";
