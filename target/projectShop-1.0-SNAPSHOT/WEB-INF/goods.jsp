@@ -42,10 +42,10 @@
             <td>${goods.description}</td>
             <td>${goods.country}</td>
             <td>${goods.goodsImage}</td>
-            <%--<td><a href="/delete/${goods.id}">Delete this item</a></td>--%>
+            <td><a href="/order/${goods.idGoods}">Order this item</a></td>
         </tr>
     </c:forEach>
 </table>
-<a href="/add-new-goods">Add new goods</a>
+<a href="/orderall">Order All</a>
 </body>
 </html>

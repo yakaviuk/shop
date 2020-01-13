@@ -67,6 +67,4 @@ public class Controller1 {
             return "failinlogin";
         }
     }
-
-
 }
