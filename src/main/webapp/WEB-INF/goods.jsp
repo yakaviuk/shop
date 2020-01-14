@@ -26,6 +26,8 @@
     </style>
 </head>
 <body>
+<a href="/login" style="float: right;"> Logout </a>
+<h2>List with Goods</h2>
 <table>
     <tr>
         <th>Name</th>
