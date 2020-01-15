@@ -7,7 +7,7 @@ public class WebAppInitialiser extends AbstractAnnotationConfigDispatcherServlet
     @Override
     protected Class<?>[] getRootConfigClasses() {
 
-        return new Class[]{RootConfig.class};
+        return new Class[]{MyWebMvcConfigurerAdapter.class};  //changed from RootConfig
     }
 
     @Override

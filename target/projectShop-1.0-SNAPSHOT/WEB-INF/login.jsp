@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--// ??--%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
@@ -18,8 +17,7 @@
     <button type="submit" class="login">Login</button>
 </form>
 <p>Don't you have an account? <a href="registration">Registration</a></p>
-<%--//??--%>
-<img src="<s:url value="images/apache-man.jpg" />" />
-<img src="/WEB-INF/images/apache-man.jpg"/>
+<img src="<s:url value="/images/apache.jpg" />" />
+<img src="/images/man1.jpg"/>
 </body>
 </html>
