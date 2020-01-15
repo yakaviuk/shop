@@ -27,8 +27,10 @@
     </style>
 </head>
 <body>
+
 <a href="/login" style="float: right;"> Logout </a>
-<h2>List with Goods</h2>
+<h2>Hello ${name}! </h2>
+<h2>This is your list with Goods</h2>
 <table>
     <tr>
         <th>Name</th>
@@ -45,7 +47,7 @@
             <td>${goods.description}</td>
             <td>${goods.country}</td>
             <td>  <img src="<s:url value="/images/${goods.goodsImage}.jpg" />" /></td>
-            <td><a href="/order/${goods.idGoods}">Order this item</a></td>
+            <td><a href="/order/${userId}/${goods.idGoods}">Order this item</a></td>
         </tr>
     </c:forEach>
 </table>

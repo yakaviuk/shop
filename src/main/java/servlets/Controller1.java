@@ -9,6 +9,7 @@ import services.GoodsService;
 import services.GoodsServiceImp;
 import services.UserService;
 import services.UserServiceImp;
+
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -36,6 +37,8 @@ public class Controller1 {
         User user = userService.getUserService(login, password);
         if (user != null) {
             req.setAttribute("goodsAll", goodsService.findAll());
+            req.getSession().setAttribute("name", user.getName());
+            req.getSession().setAttribute("userId", user.getIdUser());
             return "goods";
         } else {
             return "faillogin";
