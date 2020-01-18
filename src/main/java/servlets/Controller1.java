@@ -1,5 +1,6 @@
 package servlets;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,6 +47,20 @@ public class Controller1 {
         }
     }
 
+    @RequestMapping(value = "/goods", method = RequestMethod.POST)
+    public String checklogin(@RequestParam(value = "login") String login, HttpServletRequest req) {
+        User user = (new UserServiceImp().getUserByLoginService(login.toLowerCase()));
+        if (user != null) {
+            req.setAttribute("goodsAll", goodsService.findAll());
+            req.getSession().setAttribute("name", user.getName());
+            req.getSession().setAttribute("login", user.getLogin());
+            req.getSession().setAttribute("userId", user.getIdUser());
+            return "goods";
+        } else {
+            return "faillogin";
+        }
+    }
+
     @RequestMapping(value = "/checkregistartion", method = RequestMethod.POST)
     public String checkRegistartion(@RequestParam(value = "name") String name, @RequestParam(value = "login") String login,
                                     @RequestParam(value = "age") Integer age, @RequestParam(value = "email") String email,
@@ -80,5 +95,17 @@ public class Controller1 {
         req.getSession().setAttribute("age", user.getAge());
         req.getSession().setAttribute("email", user.getEmail());
         return "userinfo";
+    }
+
+    @RequestMapping(value = "/order", method = RequestMethod.POST)
+    public String orderItem(@RequestParam(value = "login") String login, @RequestParam(value = "idGoods") String idGoods, HttpServletRequest req) {
+        User user = (new UserServiceImp().getUserByLoginService(login));
+        req.setAttribute("goodsAll", goodsService.findAll());
+        req.getSession().setAttribute("name", user.getName());
+        req.getSession().setAttribute("login", user.getLogin());
+        req.getSession().setAttribute("userId", user.getIdUser());
+        //to be deleted
+        System.out.println(login+" ordered "+idGoods);
+        return "goods";
     }
 }
