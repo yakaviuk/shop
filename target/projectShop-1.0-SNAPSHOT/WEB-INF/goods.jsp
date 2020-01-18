@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -28,10 +27,13 @@
     </style>
 </head>
 <body>
-
 <a href="/login" style="float: right;"> Logout </a>
-<h2>Hello ${name}! </h2>
-<h2>This is your list with Goods</h2>
+<h2>Hello ${name}</h2>
+<form action="userinfo" method="POST">
+    <input type="hidden" placeholder="Login" name="login" value="${login}">
+    <button type="submit" class="goods">Get info</button>
+</form>
+<h2>There is a list with all available Goods for you</h2>
 <table>
     <tr>
         <th>Name</th>

@@ -11,18 +11,25 @@ public class UserServiceImp implements UserService {
     public User getUserService(String login, String password) {
         userDAO = new UserDAOImp();
         User userTemp = userDAO.getUser(login);
-        if (login.equals(userTemp.getLogin()) && password.equals(userTemp.getPassword())) {
+        if (login.equalsIgnoreCase(userTemp.getLogin()) && password.equals(userTemp.getPassword())) {
             return userDAO.getUser(login);
         } else {
             return null;
         }
     }
 
+    public User getUserByLoginService(String login) {
+           if (new UserDAOImp().getUser(login) != null) {
+            return new UserDAOImp().getUser(login);
+        } else {
+            return null;
+        }
+    }
     @Override
     public User getUserServiceCheckIfUserExists(String login) {
         userDAO = new UserDAOImp();
         User userTemp = userDAO.getUser(login);
-        if (login.equals(userTemp.getLogin())) {
+        if (login.equalsIgnoreCase(userTemp.getLogin())) {
             return userDAO.getUser(login);
         } else {
             return null;
@@ -33,7 +40,7 @@ public class UserServiceImp implements UserService {
     public User getUserServiceCheckIfUserExistsByEmail(String email) {
         userDAO = new UserDAOImp();
         User userTemp = userDAO.getUserByEmail(email);
-        if (email.equals(userTemp.getEmail())) {
+        if (email.equalsIgnoreCase(userTemp.getEmail())) {
             return userDAO.getUserByEmail(email);
         } else {
             return null;

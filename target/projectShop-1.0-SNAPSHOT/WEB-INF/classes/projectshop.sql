@@ -30,7 +30,7 @@ CREATE TABLE `goods` (
   `country` varchar(45) DEFAULT NULL,
   `goods_image` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_goods`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `goods` (
 
 LOCK TABLES `goods` WRITE;
 /*!40000 ALTER TABLE `goods` DISABLE KEYS */;
-INSERT INTO `goods` (`id_goods`, `goods_name`, `goods_price`, `description`, `country`, `goods_image`) VALUES (1,'ibuprofen',2.4,'painkil','Belarus',NULL),(2,'water',0.4,'H2O','Ukraine',NULL);
+INSERT INTO `goods` (`id_goods`, `goods_name`, `goods_price`, `description`, `country`, `goods_image`) VALUES (5,'Bactericidal patch',1.87,'Bactericidal antibiotics kill bacteria','Belarus','plastyr'),(7,'hydrogen peroxide',1.9,'H2O2','India','hydrogen'),(8,'iodine',0.84,'I2','Syria','iodine'),(9,'water',0.4,'H2O','Ukraine','water'),(10,'ibuprofen',2.4,'painkil','Belarus','ibuprofen');
 /*!40000 ALTER TABLE `goods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +90,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `login_UNIQUE` (`login`),
   UNIQUE KEY `id_user_UNIQUE` (`id_user`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id_user`, `name`, `login`, `age`, `email`, `password`) VALUES (1,'rob','rob',32,'1@we.com','111'),(2,'2','2',2,'343434','2');
+INSERT INTO `user` (`id_user`, `name`, `login`, `age`, `email`, `password`) VALUES (1,'rob','rob',32,'1@we.com','111'),(22,'Postman Pechkin','pechkin',54,'pechkin@tut.by','1');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -112,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-27 21:41:55
+-- Dump completed on 2020-01-16  0:36:33

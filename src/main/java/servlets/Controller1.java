@@ -34,10 +34,11 @@ public class Controller1 {
     @RequestMapping(value = "/checklogin", method = RequestMethod.POST)
     public String checklogin(@RequestParam(value = "login") String login, @RequestParam(value = "password") String password, HttpServletRequest req) {
         UserService userService = new UserServiceImp();
-        User user = userService.getUserService(login, password);
+        User user = userService.getUserService(login.toLowerCase(), password);
         if (user != null) {
             req.setAttribute("goodsAll", goodsService.findAll());
             req.getSession().setAttribute("name", user.getName());
+            req.getSession().setAttribute("login", user.getLogin());
             req.getSession().setAttribute("userId", user.getIdUser());
             return "goods";
         } else {
@@ -54,7 +55,7 @@ public class Controller1 {
             if (userService.getUserServiceCheckIfUserExistsByEmail(email) == null) {
                 if (age >= 18) {
                     if (password.equals(pswRepeat)) {
-                        userService.createUser(new User(name, login, age, email, password));
+                        userService.createUser(new User(name, login.toLowerCase(), age, email, password));
                         return "successregistration";
                     } else {
                         return "failinpswrepeat";
@@ -68,5 +69,16 @@ public class Controller1 {
         } else {
             return "failinlogin";
         }
+    }
+
+    @RequestMapping(value = "/userinfo", method = RequestMethod.POST)
+    public String checkRegistartion(@RequestParam(value = "login") String login, HttpServletRequest req) {
+        User user = new UserServiceImp().getUserByLoginService(login.toLowerCase());
+        req.getAttribute(login);
+        req.getSession().setAttribute("login", login);
+        req.getSession().setAttribute("name", user.getName());
+        req.getSession().setAttribute("age", user.getAge());
+        req.getSession().setAttribute("email", user.getEmail());
+        return "userinfo";
     }
 }
