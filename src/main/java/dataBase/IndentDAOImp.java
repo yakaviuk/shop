@@ -5,12 +5,12 @@ import org.hibernate.Transaction;
 import pojo.Indent;
 import util.HibernateUtil;
 
-public class OrderDAOImp implements OrderDAO {
+public class IndentDAOImp implements IndentDAO {
     private Transaction transaction = null;
     Indent indent;
 
     @Override
-    public boolean createOrder(Indent indent) {
+    public boolean createIndent(Indent indent) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.save(indent);
@@ -26,7 +26,7 @@ public class OrderDAOImp implements OrderDAO {
     }
 
     @Override
-    public boolean updateOrder(Indent indent) {
+    public boolean updateIndent(Indent indent) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.update(indent);
@@ -43,7 +43,7 @@ public class OrderDAOImp implements OrderDAO {
     }
 
     @Override
-    public Indent getOrder(Long idUser) {
+    public Indent getIndent(Long idUser) {
         indent = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             indent = session.get(Indent.class, idUser);

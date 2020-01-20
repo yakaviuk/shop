@@ -3,12 +3,12 @@ package pojo;
 import javax.persistence.*;
 
 @Entity
-@Table(name="orders")
+@Table(name="indent")
 public class Indent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_order")
-    private Long idOrder;
+    @Column(name = "id_indent")
+    private Long idIndent;
 
     @Column(name = "id_user")
     private Long idUser;
@@ -16,8 +16,8 @@ public class Indent {
     @Column(name = "id_goods")
     private Long idGoods;
 
-    @Column(name = "order_status")
-    private Integer status;
+    @Column(name = "indent_status")
+    private Integer indentStatus;
 
 
     @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -27,30 +27,30 @@ public class Indent {
 
     @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
             // (optional = false)
-    @JoinColumn(name = "id_goods", insertable = false, updatable = false) //, referencedColumnName = "id_order", insertable = false, updatable = false)
+    @JoinColumn(name = "id_goods", insertable = false, updatable = false) //, referencedColumnName = "id_indent", insertable = false, updatable = false)
     private Goods goods;
 
     public Indent() {
     }
 
-    public Indent(Long idUser, Long idGoods, Integer status) {
+    public Indent(Long idUser, Long idGoods, Integer indentStatus) {
         this.idUser = idUser;
         this.idGoods = idGoods;
-        this.status = status;
+        this.indentStatus = indentStatus;
     }
 
     public Indent(Long idUser, Long idGoods) {
         this.idUser = idUser;
         this.idGoods = idGoods;
-        this.status = 1;
+        this.indentStatus = 1;
     }
 
-    public Long getIdOrder() {
-        return idOrder;
+    public Long getIdIndent() {
+        return idIndent;
     }
 
-    public void setIdOrder(Long idOrder) {
-        this.idOrder = idOrder;
+    public void setIdIndent(Long idIndent) {
+        this.idIndent = idIndent;
     }
 
     public Long getIdUser() {
@@ -70,20 +70,20 @@ public class Indent {
     }
 
     public Integer getStatus() {
-        return status;
+        return indentStatus;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setStatus(Integer indentStatus) {
+        this.indentStatus = indentStatus;
     }
 
     @Override
     public String toString() {
         return "Indent{" +
-                "idOrder=" + idOrder +
+                "idIndent=" + idIndent +
                 ", idUser=" + idUser +
                 ", idGoods=" + idGoods +
-                ", status='" + status + '\'' +
+                ", indentStatus='" + indentStatus + '\'' +
                 '}';
     }
 
@@ -94,7 +94,7 @@ public class Indent {
 
         Indent indent = (Indent) o;
 
-        if (getIdOrder() != null ? !getIdOrder().equals(indent.getIdOrder()) : indent.getIdOrder() != null) return false;
+        if (getIdIndent() != null ? !getIdIndent().equals(indent.getIdIndent()) : indent.getIdIndent() != null) return false;
         if (getIdUser() != null ? !getIdUser().equals(indent.getIdUser()) : indent.getIdUser() != null) return false;
         if (getIdGoods() != null ? !getIdGoods().equals(indent.getIdGoods()) : indent.getIdGoods() != null) return false;
         return getStatus() != null ? getStatus().equals(indent.getStatus()) : indent.getStatus() == null;
@@ -102,7 +102,7 @@ public class Indent {
 
     @Override
     public int hashCode() {
-        int result = getIdOrder() != null ? getIdOrder().hashCode() : 0;
+        int result = getIdIndent() != null ? getIdIndent().hashCode() : 0;
         result = 31 * result + (getIdUser() != null ? getIdUser().hashCode() : 0);
         result = 31 * result + (getIdGoods() != null ? getIdGoods().hashCode() : 0);
         result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);

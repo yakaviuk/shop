@@ -44,13 +44,13 @@ INSERT INTO `goods` (`id_goods`, `goods_name`, `goods_price`, `description`, `co
 UNLOCK TABLES;
 
 --
--- Table structure for table `orders`
+-- Table structure for table `indent`
 --
 
-DROP TABLE IF EXISTS `orders`;
+DROP TABLE IF EXISTS `indent`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `orders` (
+CREATE TABLE `indent` (
   `id_order` bigint(11) NOT NULL AUTO_INCREMENT,
   `id_user` bigint(11) NOT NULL,
   `id_goods` bigint(11) NOT NULL,
@@ -64,13 +64,13 @@ CREATE TABLE `orders` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `orders`
+-- Dumping data for table `indent`
 --
 
-LOCK TABLES `orders` WRITE;
-/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` (`id_order`, `id_user`, `id_goods`, `order_status`) VALUES (5,30,5,1),(6,30,9,1);
-/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+LOCK TABLES `indent` WRITE;
+/*!40000 ALTER TABLE `indent` DISABLE KEYS */;
+INSERT INTO `indent` (`id_order`, `id_user`, `id_goods`, `order_status`) VALUES (5,30,5,1),(6,30,9,1);
+/*!40000 ALTER TABLE `indent` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

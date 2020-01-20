@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class Controller1 {
     GoodsService goodsService = new GoodsServiceImp();
-    OrderService orderService = new OrderServiceImp();
+    IndentService indentService = new IndentServiceImp();
 
     @RequestMapping(value = "/")
     public String indexPage() {
@@ -95,16 +95,14 @@ public class Controller1 {
         return "userinfo";
     }
 
-    @RequestMapping(value = "/orders", method = RequestMethod.POST)
+    @RequestMapping(value = "/orderitem", method = RequestMethod.POST)
     public String orderItem(@RequestParam(value = "login") String login, @RequestParam(value = "idGoods") Long idGoods, HttpServletRequest req) {
         User user = (new UserServiceImp().getUserByLoginService(login));
         req.setAttribute("goodsAll", goodsService.findAll());
         req.getSession().setAttribute("name", user.getName());
         req.getSession().setAttribute("login", user.getLogin());
         req.getSession().setAttribute("userId", user.getIdUser());
-        orderService.createOrder(new Indent( user.getIdUser(), idGoods ));
-        //to be deleted
-        System.out.println(login+ " userID: " + user.getIdUser() +" ordered "+idGoods);
+        indentService.createIndent(new Indent( user.getIdUser(), idGoods ));
         return "goods";
     }
 }

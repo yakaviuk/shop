@@ -5,14 +5,14 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import pojo.Indent;
 import pojo.User;
-import services.OrderService;
-import services.OrderServiceImp;
+import services.IndentService;
+import services.IndentServiceImp;
 import services.UserServiceImp;
 import util.HibernateUtil;
 
 public class Main {
     public static void main(String[] args) {
-        OrderService orderService = new OrderServiceImp();
+        IndentService orderService = new IndentServiceImp();
         User user = (new UserServiceImp().getUserByLoginService("pechkin"));
 //        req.setAttribute("goodsAll", goodsService.findAll());
 //        req.getSession().setAttribute("name", user.getName());
@@ -20,7 +20,7 @@ public class Main {
 //        req.getSession().setAttribute("userId", user.getIdUser());
         Long idUser = 22L;
         Long idGoods = 9L;
-    //    orderService.createOrder(new Indent( idUser, idGoods ));
+    //    indentService.createIndent(new Indent( idUser, idGoods ));
         //to be deleted
      //   System.out.println( " userID: " + user.getIdUser() +" ordered "+idGoods);
 
