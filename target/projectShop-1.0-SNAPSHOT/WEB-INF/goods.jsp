@@ -19,7 +19,6 @@
             text-align: left;
             padding: 8px;
         }
-
         tr:nth-child(even) {
             background-color: #dddddd;
         }
@@ -49,8 +48,7 @@
             <td>${goods.description}</td>
             <td>${goods.country}</td>
             <td>  <img src="<s:url value="/images/${goods.goodsImage}.jpg" />" /></td>
-            <%--<td><a href="/order/${userId}/${goods.idGoods}">Order this item</a></td>--%>
-            <td><form action="order" method="POST">
+            <td><form action="orders" method="POST">
                 <input type="hidden" placeholder="login" name="login" value="${login}">
                 <input type="hidden" placeholder="idGoods" name="idGoods" value="${goods.idGoods}">
                 <button type="submit">Order</button>

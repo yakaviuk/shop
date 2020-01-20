@@ -1,21 +1,19 @@
 package servlets;
 
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import pojo.Indent;
 import pojo.User;
-import services.GoodsService;
-import services.GoodsServiceImp;
-import services.UserService;
-import services.UserServiceImp;
+import services.*;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class Controller1 {
     GoodsService goodsService = new GoodsServiceImp();
+    OrderService orderService = new OrderServiceImp();
 
     @RequestMapping(value = "/")
     public String indexPage() {
@@ -97,15 +95,16 @@ public class Controller1 {
         return "userinfo";
     }
 
-    @RequestMapping(value = "/order", method = RequestMethod.POST)
-    public String orderItem(@RequestParam(value = "login") String login, @RequestParam(value = "idGoods") String idGoods, HttpServletRequest req) {
+    @RequestMapping(value = "/orders", method = RequestMethod.POST)
+    public String orderItem(@RequestParam(value = "login") String login, @RequestParam(value = "idGoods") Long idGoods, HttpServletRequest req) {
         User user = (new UserServiceImp().getUserByLoginService(login));
         req.setAttribute("goodsAll", goodsService.findAll());
         req.getSession().setAttribute("name", user.getName());
         req.getSession().setAttribute("login", user.getLogin());
         req.getSession().setAttribute("userId", user.getIdUser());
+        orderService.createOrder(new Indent( user.getIdUser(), idGoods ));
         //to be deleted
-        System.out.println(login+" ordered "+idGoods);
+        System.out.println(login+ " userID: " + user.getIdUser() +" ordered "+idGoods);
         return "goods";
     }
 }

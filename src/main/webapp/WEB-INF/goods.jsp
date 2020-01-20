@@ -48,7 +48,7 @@
             <td>${goods.description}</td>
             <td>${goods.country}</td>
             <td>  <img src="<s:url value="/images/${goods.goodsImage}.jpg" />" /></td>
-            <td><form action="order" method="POST">
+            <td><form action="indent" method="POST">
                 <input type="hidden" placeholder="login" name="login" value="${login}">
                 <input type="hidden" placeholder="idGoods" name="idGoods" value="${goods.idGoods}">
                 <button type="submit">Order</button>

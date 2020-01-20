@@ -1,7 +1,6 @@
 package pojo;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,8 +28,8 @@ public class User {
         this.password = password;
     }
 
-    @OneToMany(mappedBy = "user1",  cascade = CascadeType.ALL, orphanRemoval = true) //may be "chemodan" as in Order class
-    private List<Order> userList;
+    @OneToMany(mappedBy = "user1",  cascade = CascadeType.ALL, orphanRemoval = true) //may be "chemodan" as in Indent class
+    private List<Indent> userList;
 
    public Long getIdUser() {
         return idUser;

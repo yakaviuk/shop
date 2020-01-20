@@ -1,9 +1,9 @@
 package dataBase;
 
-import pojo.Order;
+import pojo.Indent;
 
 public interface OrderDAO {
-    boolean createOrder (Order order);
-    boolean updateOrder (Order order);
-    Order getOrder (Long id_user); //return array?
+    boolean createOrder (Indent indent);
+    boolean updateOrder (Indent indent);
+    Indent getOrder (Long idUser); //return array?
 }

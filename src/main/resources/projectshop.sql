@@ -30,7 +30,7 @@ CREATE TABLE `goods` (
   `country` varchar(45) DEFAULT NULL,
   `goods_image` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_goods`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,32 +44,33 @@ INSERT INTO `goods` (`id_goods`, `goods_name`, `goods_price`, `description`, `co
 UNLOCK TABLES;
 
 --
--- Table structure for table `order`
+-- Table structure for table `indent`
 --
 
-DROP TABLE IF EXISTS `order`;
+DROP TABLE IF EXISTS `indent`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `order` (
+CREATE TABLE `indent` (
   `id_order` bigint(11) NOT NULL AUTO_INCREMENT,
   `id_user` bigint(11) NOT NULL,
   `id_goods` bigint(11) NOT NULL,
-  `order_status` tinyint(1) NOT NULL DEFAULT '0',
+  `order_status` int(11) DEFAULT '1',
   PRIMARY KEY (`id_order`),
   KEY `id_user__idx` (`id_user`),
   KEY `id_goods__idx` (`id_goods`),
   CONSTRAINT `id_goods_` FOREIGN KEY (`id_goods`) REFERENCES `goods` (`id_goods`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `id_user_` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `order`
+-- Dumping data for table `indent`
 --
 
-LOCK TABLES `order` WRITE;
-/*!40000 ALTER TABLE `order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+LOCK TABLES `indent` WRITE;
+/*!40000 ALTER TABLE `indent` DISABLE KEYS */;
+INSERT INTO `indent` (`id_order`, `id_user`, `id_goods`, `order_status`) VALUES (5,30,5,1),(6,30,9,1);
+/*!40000 ALTER TABLE `indent` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -90,7 +91,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `login_UNIQUE` (`login`),
   UNIQUE KEY `id_user_UNIQUE` (`id_user`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +100,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id_user`, `name`, `login`, `age`, `email`, `password`) VALUES (1,'rob','rob',32,'1@we.com','111'),(22,'Postman Pechkin','pechkin',54,'pechkin@tut.by','1');
+INSERT INTO `user` (`id_user`, `name`, `login`, `age`, `email`, `password`) VALUES (1,'rob','rob',32,'1@we.com','111'),(22,'Postman Pechkin','pechkin',54,'pechkin@tut.by','1'),(25,'ROB','45',45,'45','45'),(26,'KEN','ken1!',45,'uhcn@!nwn3','e'),(27,'EFFE','eer',234,'1@BY.by','4'),(29,'CF dscvdVVDvdcv','vdvdcvbdbc',145,'25','25'),(30,'dgdfg','q',2324,'ilya@partnership.byq','q'),(31,'56','56',56,'56','qqq'),(32,'47','47',47,'47','47');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -112,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-16  0:36:33
+-- Dump completed on 2020-01-21  1:11:30
