@@ -5,12 +5,12 @@ import dataBase.IndentDAOImp;
 import pojo.Indent;
 
 public class IndentServiceImp implements IndentService {
-    IndentDAO orderDAO;
+    IndentDAO indentDAO;
 
     @Override
     public boolean createIndent(Indent indent) {
-        orderDAO = new IndentDAOImp();
-        return orderDAO.createIndent(indent);
+        indentDAO = new IndentDAOImp();
+        return indentDAO.createIndent(indent);
     }
 
     @Override
