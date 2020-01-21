@@ -1,9 +1,12 @@
 package services;
 
+import pojo.Goods;
 import pojo.Indent;
+
+import java.util.List;
 
 public interface IndentService {
     boolean createIndent (Indent indent);
-    boolean setIndentFalse (Long idIndent);
-    boolean setIndentTrue (Long idIndent);
+    boolean setIndentZero (Long idUser);
+     List<Goods> getCartList (Long idUser);
     }

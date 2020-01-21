@@ -51,11 +51,15 @@
             <td><form action="orderitem" method="POST">
                 <input type="hidden" placeholder="login" name="login" value="${login}">
                 <input type="hidden" placeholder="idGoods" name="idGoods" value="${goods.idGoods}">
-                <button type="submit">Indent</button>
+                <button type="submit">Add</button>
             </form></td>
         </tr>
     </c:forEach>
 </table>
-<a href="/orderall">Indent All</a>
+<%--<a href="/orderall">Order all chosen</a>--%>
+<form action="orderall" method="POST">
+    <input type="hidden" placeholder="userId" name="userId" value="${userId}">
+    <button type="submit">Order all chosen</button>
+</form>
 </body>
 </html>

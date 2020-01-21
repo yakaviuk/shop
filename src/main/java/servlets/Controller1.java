@@ -105,4 +105,12 @@ public class Controller1 {
         indentService.createIndent(new Indent( user.getIdUser(), idGoods ));
         return "goods";
     }
+
+    @RequestMapping(value = "/orderall", method = RequestMethod.POST)
+    public String orderAllChosen (@RequestParam(value = "userId") Long userId, HttpServletRequest req) {
+IndentService indentService = new IndentServiceImp();
+
+        req.setAttribute("cartList", indentService.getCartList(userId));
+        return "cart";
+    }
 }
