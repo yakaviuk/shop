@@ -56,10 +56,9 @@
         </tr>
     </c:forEach>
 </table>
-<%--<a href="/orderall">Order all chosen</a>--%>
-<form action="orderall" method="POST">
+<form action="cart" method="POST">
     <input type="hidden" placeholder="userId" name="userId" value="${userId}">
-    <button type="submit">Order all chosen</button>
+    <button type="submit">View cart with ordered items</button>
 </form>
 </body>
 </html>

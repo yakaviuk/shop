@@ -106,7 +106,7 @@ public class Controller1 {
         return "goods";
     }
 
-    @RequestMapping(value = "/orderall", method = RequestMethod.POST)
+    @RequestMapping(value = "/cart", method = RequestMethod.POST)
     public String orderAllChosen (@RequestParam(value = "userId") Long userId, HttpServletRequest req) {
 IndentService indentService = new IndentServiceImp();
 

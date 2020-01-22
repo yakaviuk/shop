@@ -24,6 +24,7 @@ public class GoodsDAOImp implements GoodsDAO {
             }
             e.printStackTrace();
         }
+        System.out.println("Start! "+ goodsAll.size()+ goodsAll.toString());
         return goodsAll;
     }
 }

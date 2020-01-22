@@ -3,6 +3,8 @@ package dataBase;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hibernate.type.DoubleType;
+import org.hibernate.type.StringType;
 import pojo.Goods;
 import pojo.Indent;
 import util.HibernateUtil;
@@ -62,20 +64,26 @@ public class IndentDAOImp implements IndentDAO {
     }
 
     @Override
-    public List<Goods> getCartList (Long idUser) {
-        List<Goods> orderedList = new ArrayList<>();
+    public List<Goods> getCartList(Long idUser) {
+        List<Goods> cartList = new ArrayList<>();
+        List<Object[]> orderedList1;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query query = session.createQuery("Select g.goods_name, g.goods_price from \n" +
-                    "( SELECT id_goods, name FROM indent left join user ON indent.id_user = user.id_user where indent_status = 1 AND user.id_user = '"+ idUser +"') a\n" +
-                    "left join goods g\n" +
-                    "ON a.id_goods = g.id_goods\n");
-            orderedList = (List) query.getResultList();
+            Query query = session.createSQLQuery("SELECT g.goods_name, g.goods_price from goods g left join indent i ON g.id_goods = i.id_goods where i.id_user = 30 AND i.indent_status = 1")
+                    .addScalar("goods_name", new StringType())
+                    .addScalar("goods_price", new DoubleType());
+            orderedList1 = query.list();
+            for (Object[] row : orderedList1) {
+                Goods goods = new Goods();
+                goods.setGoodsName(row[0].toString());
+                goods.setGoodsPrice(Double.parseDouble(row[1].toString()));
+                cartList.add(goods);
+            }
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
         }
-        return orderedList;
+        return cartList;
     }
 }
