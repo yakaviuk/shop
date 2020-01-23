@@ -1,16 +1,9 @@
 package services;
 
-import dataBase.GoodsDAO;
-import dataBase.GoodsDAOImp;
 import dataBase.IndentDAO;
 import dataBase.IndentDAOImp;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 import pojo.Goods;
 import pojo.Indent;
-import util.HibernateUtil;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class IndentServiceImp implements IndentService {
@@ -25,8 +18,8 @@ public class IndentServiceImp implements IndentService {
 
     @Override
     public boolean setIndentZero(Long idUser) {
-//TODO
-        return false;
+        indentDAO = new IndentDAOImp();
+        return indentDAO.setIndentZero(idUser);
     }
 
     @Override
@@ -38,7 +31,13 @@ public class IndentServiceImp implements IndentService {
     @Override
     public Double getSum (Long idUser) {
         indentDAO = new IndentDAOImp();
-        Double d = (int) Math.round(indentDAO.getSum(idUser)*100) /100d;
+        Object s = indentDAO.getSum(idUser);
+        Double d = null;
+        if (s == null) {
+            d = 0.0;
+        } else {
+             d = (int) Math.round(indentDAO.getSum(idUser) * 100) / 100d;
+        }
         return  d;
     }
 

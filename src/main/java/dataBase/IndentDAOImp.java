@@ -7,7 +7,6 @@ import org.hibernate.type.DoubleType;
 import org.hibernate.type.StringType;
 import pojo.Goods;
 import pojo.Indent;
-import pojo.User;
 import util.HibernateUtil;
 
 import java.util.ArrayList;
@@ -101,5 +100,22 @@ public class IndentDAOImp implements IndentDAO {
             e.printStackTrace();
         }
         return sum;
+    }
+
+    @Override
+    public boolean setIndentZero(Long idUser) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Query query = session.createSQLQuery("update indent set indent_status = 0 where id_user = '"+idUser+"'");
+            query.executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Ilya
-  Date: 23-Jan-20
-  Time: 08:15
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,5 +6,6 @@
 <body>
 <p>Order was successfully paid!</p>
 <p>Total: ${sum} </p>
+<p>Sign in again <a href="login">Sign in</a>.</p>
 </body>
 </html>

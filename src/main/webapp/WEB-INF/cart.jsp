@@ -39,5 +39,9 @@
     </c:forEach>
 </table>
 <p>Total amount: ${sum}</p>
+<form action="orderall" method="POST">
+    <input type="hidden" placeholder="userId" name="userId" value="${userId}">
+    <button type="submit">Order all and pay now!</button>
+</form>
 </body>
 </html>

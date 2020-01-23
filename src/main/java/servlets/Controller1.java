@@ -108,16 +108,25 @@ public class Controller1 {
 
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
     public String openCart(@RequestParam(value = "userId") Long userId, HttpServletRequest req, Double sum) {
-        IndentService indentService = new IndentServiceImp();
+      //  IndentService indentService = new IndentServiceImp();
         req.setAttribute("cartList", indentService.getCartList(userId));
         req.setAttribute("sum", indentService.getSum(userId));
-
         return "cart";
     }
 
     @RequestMapping(value = "/orderall", method = RequestMethod.POST)
-    public String orderAllChosen(@RequestParam(value = "userId") Long userId, HttpServletRequest req, Double sum) {
+    public String orderAllChosen(@RequestParam(value = "userId") Long userId, HttpServletRequest req) {
         req.getSession().setAttribute("userId", userId);
+        req.setAttribute("sum", indentService.getSum(userId));
+        if (indentService.setIndentZero(userId)) {
+            return "paid";
+        } else {
+            return "errorinpay";
+        }
+    }
+
+    @RequestMapping(value = "/paid", method = RequestMethod.POST)
+    public String paidPage(@RequestParam(value = "userId") Long userId, HttpServletRequest req) {
         req.setAttribute("sum", indentService.getSum(userId));
         return "paid";
     }

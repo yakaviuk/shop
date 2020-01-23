@@ -11,4 +11,5 @@ public interface IndentDAO {
     Indent getIndent (Long idUser); //return array?
     List<Goods> getCartList (Long idUser);
     Double getSum (Long idUser);
+     boolean setIndentZero(Long idUser);
 }
