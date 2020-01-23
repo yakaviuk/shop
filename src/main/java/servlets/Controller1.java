@@ -110,16 +110,16 @@ public class Controller1 {
     public String openCart(@RequestParam(value = "userId") Long userId, HttpServletRequest req, Double sum) {
         IndentService indentService = new IndentServiceImp();
         req.setAttribute("cartList", indentService.getCartList(userId));
-        req.setAttribute("sum", sum);
-        //TODO - add summ
+        req.setAttribute("sum", indentService.getSum(userId));
+
         return "cart";
     }
 
     @RequestMapping(value = "/orderall", method = RequestMethod.POST)
-    public String orderAllChosen(@RequestParam(value = "userId") Long userId, HttpServletRequest req) {
+    public String orderAllChosen(@RequestParam(value = "userId") Long userId, HttpServletRequest req, Double sum) {
         req.getSession().setAttribute("userId", userId);
-
-return "paid";
+        req.setAttribute("sum", indentService.getSum(userId));
+        return "paid";
     }
 
 }

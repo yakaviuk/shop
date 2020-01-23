@@ -7,6 +7,7 @@ import org.hibernate.type.DoubleType;
 import org.hibernate.type.StringType;
 import pojo.Goods;
 import pojo.Indent;
+import pojo.User;
 import util.HibernateUtil;
 
 import java.util.ArrayList;
@@ -68,7 +69,7 @@ public class IndentDAOImp implements IndentDAO {
         List<Goods> cartList = new ArrayList<>();
         List<Object[]> orderedList1;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query query = session.createSQLQuery("SELECT g.goods_name, g.goods_price from goods g left join indent i ON g.id_goods = i.id_goods where i.id_user = 30 AND i.indent_status = 1")
+            Query query = session.createSQLQuery("SELECT g.goods_name, g.goods_price from goods g left join indent i ON g.id_goods = i.id_goods where i.id_user = '" + idUser + "' AND i.indent_status = 1")
                     .addScalar("goods_name", new StringType())
                     .addScalar("goods_price", new DoubleType());
             orderedList1 = query.list();
@@ -85,5 +86,20 @@ public class IndentDAOImp implements IndentDAO {
             e.printStackTrace();
         }
         return cartList;
+    }
+
+    @Override
+    public Double getSum(Long idUser) {
+        Double sum = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createSQLQuery("SELECT SUM(g.goods_price) from goods g left join indent i ON g.id_goods = i.id_goods where i.id_user = '" + idUser + "' AND i.indent_status = 1");
+            sum = (Double) query.getSingleResult();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return sum;
     }
 }

@@ -35,4 +35,11 @@ public class IndentServiceImp implements IndentService {
         return  indentDAO.getCartList(idUser);
     }
 
+    @Override
+    public Double getSum (Long idUser) {
+        indentDAO = new IndentDAOImp();
+        Double d = (int) Math.round(indentDAO.getSum(idUser)*100) /100d;
+        return  d;
+    }
+
 }

@@ -23,6 +23,7 @@
     </style>
 </head>
 <body>
+<a href="/login" style="float: right;"> Logout </a>
 <h3>Thanks for your order in our shop!</h3>
 <p>Ordered items:</p>
 <table>
@@ -37,5 +38,6 @@
         </tr>
     </c:forEach>
 </table>
+<p>Total amount: ${sum}</p>
 </body>
 </html>
