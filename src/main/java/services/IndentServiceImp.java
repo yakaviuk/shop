@@ -28,10 +28,10 @@ public class IndentServiceImp implements IndentService {
 //TODO
         return false;
     }
+
     @Override
     public List<Goods> getCartList (Long idUser) {
         indentDAO = new IndentDAOImp();
-        System.out.println(indentDAO.getCartList(idUser));
         return  indentDAO.getCartList(idUser);
     }
 

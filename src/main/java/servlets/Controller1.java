@@ -102,15 +102,24 @@ public class Controller1 {
         req.getSession().setAttribute("name", user.getName());
         req.getSession().setAttribute("login", user.getLogin());
         req.getSession().setAttribute("userId", user.getIdUser());
-        indentService.createIndent(new Indent( user.getIdUser(), idGoods ));
+        indentService.createIndent(new Indent(user.getIdUser(), idGoods));
         return "goods";
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
-    public String orderAllChosen (@RequestParam(value = "userId") Long userId, HttpServletRequest req) {
-IndentService indentService = new IndentServiceImp();
-
+    public String openCart(@RequestParam(value = "userId") Long userId, HttpServletRequest req, Double sum) {
+        IndentService indentService = new IndentServiceImp();
         req.setAttribute("cartList", indentService.getCartList(userId));
+        req.setAttribute("sum", sum);
+        //TODO - add summ
         return "cart";
     }
+
+    @RequestMapping(value = "/orderall", method = RequestMethod.POST)
+    public String orderAllChosen(@RequestParam(value = "userId") Long userId, HttpServletRequest req) {
+        req.getSession().setAttribute("userId", userId);
+
+return "paid";
+    }
+
 }
