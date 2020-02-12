@@ -16,16 +16,18 @@ public class User {
     private Integer age;
     private String email;
     private String password;
+    private String salt;
 
     public User() {
     }
 
-    public User(String name, String login, Integer age, String email, String password) {
+    public User(String name, String login, Integer age, String email, String password, String salt) {
         this.name = name;
         this.login = login;
         this.age = age;
         this.email = email;
         this.password = password;
+        this.salt = salt;
     }
 
     @OneToMany(mappedBy = "user1",  cascade = CascadeType.ALL, orphanRemoval = true)
@@ -77,6 +79,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     @Override

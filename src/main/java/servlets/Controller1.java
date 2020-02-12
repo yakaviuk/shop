@@ -31,8 +31,11 @@ public class Controller1 {
 
     @RequestMapping(value = "/checklogin", method = RequestMethod.POST)
     public String checklogin(@RequestParam(value = "login") String login, @RequestParam(value = "password") String password, HttpServletRequest req) {
-        user = new UserServiceImp().getUserService(login.toLowerCase(), password);
-        if (user != null) {
+      //  new UserServiceImp().getUserByLoginService(login.toLowerCase()).getPassword()
+      //  user = new UserServiceImp().getUserService(login.toLowerCase(), password);
+       // if (user != null) {
+        if (  PasswordUtils.verifyUserPassword(password, new UserServiceImp().getUserByLoginService(login.toLowerCase()).getPassword(), new UserServiceImp().getUserByLoginService(login.toLowerCase()).getSalt())   ){
+            user = (new UserServiceImp().getUserByLoginService(login.toLowerCase()));
             req.setAttribute("goodsAll", new GoodsServiceImp().findAll());
             req.getSession().setAttribute("name", user.getName());
             req.getSession().setAttribute("login", user.getLogin());
@@ -65,7 +68,9 @@ public class Controller1 {
             if (new UserServiceImp().getUserServiceCheckIfUserExistsByEmail(email) == null) {
                 if (age >= 18) {
                     if (password.equals(pswRepeat)) {
-                        if (new UserServiceImp().createUser(new User(name, login.toLowerCase(), age, email, password))){
+                        String salt = PasswordUtils.getSalt(30);
+                        String securePassword = PasswordUtils.generateSecurePassword(password, salt);
+                        if (new UserServiceImp().createUser(new User(name, login.toLowerCase(), age, email, securePassword, salt))){
                             return "successregistration";
                         } else {
                             return "otherfail";
