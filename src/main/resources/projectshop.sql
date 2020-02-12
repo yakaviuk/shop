@@ -58,7 +58,7 @@ CREATE TABLE `indent` (
   PRIMARY KEY (`id_indent`),
   KEY `id_user__idx` (`id_user`),
   KEY `id_goods__idx` (`id_goods`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `indent` (
 
 LOCK TABLES `indent` WRITE;
 /*!40000 ALTER TABLE `indent` DISABLE KEYS */;
-INSERT INTO `indent` (`id_indent`, `id_user`, `id_goods`, `indent_status`) VALUES (5,30,5,1),(6,30,9,1),(7,30,5,1),(8,30,5,1),(9,31,5,1),(10,31,7,1),(11,31,10,1),(12,34,5,1),(13,34,7,1),(14,34,10,1),(15,34,10,1);
+INSERT INTO `indent` (`id_indent`, `id_user`, `id_goods`, `indent_status`) VALUES (5,30,5,0),(6,30,9,0),(7,30,5,0),(8,30,5,0),(9,31,5,1),(10,31,7,1),(11,31,10,1),(12,34,5,1),(13,34,7,1),(14,34,10,1),(15,34,10,1),(16,34,5,1),(17,30,5,0),(18,30,5,0),(19,30,9,0),(20,30,5,0),(21,30,5,0),(22,30,7,0),(23,22,7,0),(24,22,9,0),(25,30,8,0),(26,30,9,0),(27,35,5,0),(28,35,7,0),(29,35,8,0),(30,35,10,0),(31,30,5,0),(32,36,8,0),(33,36,9,0),(34,22,5,0);
 /*!40000 ALTER TABLE `indent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +89,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `login_UNIQUE` (`login`),
   UNIQUE KEY `id_user_UNIQUE` (`id_user`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id_user`, `name`, `login`, `age`, `email`, `password`) VALUES (1,'rob','rob',32,'1@we.com','111'),(22,'Postman Pechkin','pechkin',54,'pechkin@tut.by','1'),(25,'ROB','45',45,'45','45'),(26,'KEN','ken1!',45,'uhcn@!nwn3','e'),(27,'EFFE','eer',234,'1@BY.by','4'),(29,'CF dscvdVVDvdcv','vdvdcvbdbc',145,'25','25'),(30,'dgdfg','q',2324,'ilya@partnership.byq','q'),(31,'56','56',56,'56','qqq'),(32,'47','47',47,'47','47'),(33,'werwer','werwet',25,'ilya92@tut.by','12'),(34,'Aaron Kennihan','aa',31,'Kennihan@hotmail.com','bb');
+INSERT INTO `user` (`id_user`, `name`, `login`, `age`, `email`, `password`) VALUES (1,'rob','rob',32,'1@we.com','111'),(22,'Postman Pechkin','pechkin',54,'pechkin@tut.by','1'),(25,'ROB','45',45,'45@tut.by','45'),(27,'EFFE','eer',234,'1@BY.by','4'),(34,'Aaron Kennihan','aa',31,'Kennihan@hotmail.com','bb');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -111,4 +111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-21  1:56:33
+-- Dump completed on 2020-02-12 20:48:41
