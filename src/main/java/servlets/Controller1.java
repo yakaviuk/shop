@@ -130,5 +130,4 @@ public class Controller1 {
         req.setAttribute("sum", indentService.getSum(userId));
         return "paid";
     }
-
 }
