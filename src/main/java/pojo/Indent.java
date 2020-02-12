@@ -3,7 +3,7 @@ package pojo;
 import javax.persistence.*;
 
 @Entity
-@Table(name="indent")
+@Table(name = "indent")
 public class Indent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,15 +19,12 @@ public class Indent {
     @Column(name = "indent_status")
     private Integer indentStatus;
 
-
-    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user", insertable = false, updatable = false)
-    //, referencedColumnName = "id_user", insertable = false, updatable = false
     private User user1;
 
-    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-            // (optional = false)
-    @JoinColumn(name = "id_goods", insertable = false, updatable = false) //, referencedColumnName = "id_indent", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_goods", insertable = false, updatable = false)
     private Goods goods;
 
     public Indent() {
@@ -91,12 +88,12 @@ public class Indent {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Indent indent = (Indent) o;
-
-        if (getIdIndent() != null ? !getIdIndent().equals(indent.getIdIndent()) : indent.getIdIndent() != null) return false;
+        if (getIdIndent() != null ? !getIdIndent().equals(indent.getIdIndent()) : indent.getIdIndent() != null)
+            return false;
         if (getIdUser() != null ? !getIdUser().equals(indent.getIdUser()) : indent.getIdUser() != null) return false;
-        if (getIdGoods() != null ? !getIdGoods().equals(indent.getIdGoods()) : indent.getIdGoods() != null) return false;
+        if (getIdGoods() != null ? !getIdGoods().equals(indent.getIdGoods()) : indent.getIdGoods() != null)
+            return false;
         return getStatus() != null ? getStatus().equals(indent.getStatus()) : indent.getStatus() == null;
     }
 

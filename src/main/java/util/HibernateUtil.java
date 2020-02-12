@@ -21,9 +21,8 @@ public class HibernateUtil {
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
                 settings.put(Environment.URL, "jdbc:mysql://localhost:3306/project?useSSL=false");
-                //user
-                settings.put(Environment.USER, "/* enter your username here */");
-                settings.put(Environment.PASS, "/* enter your password here */");
+                settings.put(Environment.USER, "ilyaa");
+                settings.put(Environment.PASS, "3082211");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");

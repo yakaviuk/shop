@@ -27,7 +27,7 @@ public class Goods {
     private String goodsImage;
 
     @OneToMany(mappedBy = "goods")
-    private List<Indent> orders; // = new ArrayList<>();
+    private List<Indent> orders;
 
     public Goods() {
     }

@@ -107,8 +107,7 @@ public class Controller1 {
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
-    public String openCart(@RequestParam(value = "userId") Long userId, HttpServletRequest req, Double sum) {
-      //  IndentService indentService = new IndentServiceImp();
+    public String openCart(@RequestParam(value = "userId") Long userId, HttpServletRequest req) {
         req.setAttribute("cartList", indentService.getCartList(userId));
         req.setAttribute("sum", indentService.getSum(userId));
         return "cart";

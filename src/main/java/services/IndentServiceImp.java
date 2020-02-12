@@ -9,7 +9,6 @@ import java.util.List;
 public class IndentServiceImp implements IndentService {
     IndentDAO indentDAO;
 
-
     @Override
     public boolean createIndent(Indent indent) {
         indentDAO = new IndentDAOImp();
@@ -40,5 +39,4 @@ public class IndentServiceImp implements IndentService {
         }
         return  d;
     }
-
 }

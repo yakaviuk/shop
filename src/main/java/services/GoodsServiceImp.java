@@ -12,5 +12,4 @@ public class GoodsServiceImp implements GoodsService {
     public List<Goods> findAll() {
         return gdao.findAll();
     }
-
 }

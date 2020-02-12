@@ -28,7 +28,7 @@ public class User {
         this.password = password;
     }
 
-    @OneToMany(mappedBy = "user1",  cascade = CascadeType.ALL, orphanRemoval = true) //may be "chemodan" as in Indent class
+    @OneToMany(mappedBy = "user1",  cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Indent> userList;
 
    public Long getIdUser() {
@@ -83,9 +83,7 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User user = (User) o;
-
         if (idUser != null ? !idUser.equals(user.idUser) : user.idUser != null) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (login != null ? !login.equals(user.login) : user.login != null) return false;

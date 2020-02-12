@@ -5,4 +5,3 @@ out/production/LessonSql_Ilya/
 .idea/
 /.idea/
 target/
-/src/main/java/util/HibernateUtil.java
