@@ -99,7 +99,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id_user`, `name`, `login`, `age`, `email`, `password`, `salt`) VALUES (1,'rob','rob',32,'1@we.com','111',''),(22,'Postman Pechkin','pechkin',54,'pechkin@tut.by','1',''),(25,'ROB','45',45,'45@tut.by','45',''),(27,'EFFE','eer',234,'1@BY.by','4',''),(34,'Aaron Kennihan','aa',31,'Kennihan@hotmail.com','bb',''),(39,'Ricki Martin','rick',70,'rick@matri.us','123',''),(40,'Ñ?Ð°Ð²Ð°Ð²Ð° efef','eeeee',32,'ilyawwww@peeeership.by','e',''),(41,'Ñ?Ñ?Ñ?Ñ?Ñ?Ñ?Ð² Ð²Ð²Ð²Ð²','q1',22,'ilya@partnership.bywww','1',''),(42,'tyutyÐ²Ñ?Ð°Ð²Ð°Ð²Ð°','qqqq',19,'ilya@partneeeership.by','1',''),(43,'Ð²Ñ?Ð²Ñ?Ð²Ñ?','werfw4ef',21,'ilyeeeeea92@tut.by','1',''),(44,'pochta my','pochta',20,'1a92@tut.by','1',''),(45,'kennnnn','qw',22,'ilya@parqqqqqtn.q','q',''),(46,'rewgergerg','ergerg',20,'rgrgrg@ererer','e',''),(47,'ghgh','ghththt',19,'1192@tut.by','2',''),(48,'testpass 1','testpass',19,'ilya@passsip.by','7qMWW2y2Q+Yd2qtq+NqYO2J0ezxKlASE7OLw0r4eg+s=',''),(49,'kimi','kimi',18,'huh@ewe.w','T7CNqks13L75t6Qhnl0/mxi5jiJOn80RK52cjBox69E=',''),(50,'kim','kim',19,'ilya@part.1','1FMw0DBLMMQFUepItHQSfFuaMCt9Ou4ToN2z9Lo8xDU=','RdwdwcNayGLlQcaoZbtTITwGDx5TEj'),(51,'Boroda CHCHCH','boroda',19,'BorodA@tut.ue','6Ny6MYniseUYc0uWaiSWk239p9oMLusgx9NPxRO5l34=','r4ydKkRhtIpCGTX88enHMfQdn7oiHV');
+INSERT INTO `user` (`id_user`, `name`, `login`, `age`, `email`, `password`, `salt`) VALUES (50,'kim','kim',19,'ilya@part.1','1FMw0DBLMMQFUepItHQSfFuaMCt9Ou4ToN2z9Lo8xDU=','RdwdwcNayGLlQcaoZbtTITwGDx5TEj'),(51,'Boroda CHCHCH','boroda',19,'BorodA@tut.ue','6Ny6MYniseUYc0uWaiSWk239p9oMLusgx9NPxRO5l34=','r4ydKkRhtIpCGTX88enHMfQdn7oiHV');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -112,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-13  1:23:48
+-- Dump completed on 2020-02-13  1:30:23

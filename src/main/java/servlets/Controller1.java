@@ -31,10 +31,7 @@ public class Controller1 {
 
     @RequestMapping(value = "/checklogin", method = RequestMethod.POST)
     public String checklogin(@RequestParam(value = "login") String login, @RequestParam(value = "password") String password, HttpServletRequest req) {
-      //  new UserServiceImp().getUserByLoginService(login.toLowerCase()).getPassword()
-      //  user = new UserServiceImp().getUserService(login.toLowerCase(), password);
-       // if (user != null) {
-        if (  PasswordUtils.verifyUserPassword(password, new UserServiceImp().getUserByLoginService(login.toLowerCase()).getPassword(), new UserServiceImp().getUserByLoginService(login.toLowerCase()).getSalt())   ){
+        if (PasswordUtils.verifyUserPassword(password, new UserServiceImp().getUserByLoginService(login.toLowerCase()).getPassword(), new UserServiceImp().getUserByLoginService(login.toLowerCase()).getSalt())){
             user = (new UserServiceImp().getUserByLoginService(login.toLowerCase()));
             req.setAttribute("goodsAll", new GoodsServiceImp().findAll());
             req.getSession().setAttribute("name", user.getName());
