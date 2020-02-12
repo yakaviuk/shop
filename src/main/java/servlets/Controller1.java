@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class Controller1 {
-    GoodsService goodsService = new GoodsServiceImp();
-    IndentService indentService = new IndentServiceImp();
+    User user;
 
     @RequestMapping(value = "/")
     public String indexPage() {
@@ -32,10 +31,9 @@ public class Controller1 {
 
     @RequestMapping(value = "/checklogin", method = RequestMethod.POST)
     public String checklogin(@RequestParam(value = "login") String login, @RequestParam(value = "password") String password, HttpServletRequest req) {
-        UserService userService = new UserServiceImp();
-        User user = userService.getUserService(login.toLowerCase(), password);
+        user = new UserServiceImp().getUserService(login.toLowerCase(), password);
         if (user != null) {
-            req.setAttribute("goodsAll", goodsService.findAll());
+            req.setAttribute("goodsAll", new GoodsServiceImp().findAll());
             req.getSession().setAttribute("name", user.getName());
             req.getSession().setAttribute("login", user.getLogin());
             req.getSession().setAttribute("userId", user.getIdUser());
@@ -47,9 +45,9 @@ public class Controller1 {
 
     @RequestMapping(value = "/goods", method = RequestMethod.POST)
     public String checklogin(@RequestParam(value = "login") String login, HttpServletRequest req) {
-        User user = (new UserServiceImp().getUserByLoginService(login.toLowerCase()));
+        user = (new UserServiceImp().getUserByLoginService(login.toLowerCase()));
         if (user != null) {
-            req.setAttribute("goodsAll", goodsService.findAll());
+            req.setAttribute("goodsAll", new GoodsServiceImp().findAll());
             req.getSession().setAttribute("name", user.getName());
             req.getSession().setAttribute("login", user.getLogin());
             req.getSession().setAttribute("userId", user.getIdUser());
@@ -63,13 +61,15 @@ public class Controller1 {
     public String checkRegistartion(@RequestParam(value = "name") String name, @RequestParam(value = "login") String login,
                                     @RequestParam(value = "age") Integer age, @RequestParam(value = "email") String email,
                                     @RequestParam(value = "password") String password, @RequestParam(value = "pswRepeat") String pswRepeat) {
-        UserService userService = new UserServiceImp();
-        if (userService.getUserServiceCheckIfUserExists(login) == null) {
-            if (userService.getUserServiceCheckIfUserExistsByEmail(email) == null) {
+        if (new UserServiceImp().getUserServiceCheckIfUserExists(login) == null) {
+            if (new UserServiceImp().getUserServiceCheckIfUserExistsByEmail(email) == null) {
                 if (age >= 18) {
                     if (password.equals(pswRepeat)) {
-                        userService.createUser(new User(name, login.toLowerCase(), age, email, password));
-                        return "successregistration";
+                        if (new UserServiceImp().createUser(new User(name, login.toLowerCase(), age, email, password))){
+                            return "successregistration";
+                        } else {
+                            return "otherfail";
+                        }
                     } else {
                         return "failinpswrepeat";
                     }
@@ -86,7 +86,7 @@ public class Controller1 {
 
     @RequestMapping(value = "/userinfo", method = RequestMethod.POST)
     public String checkRegistartion(@RequestParam(value = "login") String login, HttpServletRequest req) {
-        User user = new UserServiceImp().getUserByLoginService(login.toLowerCase());
+        user = new UserServiceImp().getUserByLoginService(login.toLowerCase());
         req.getAttribute(login);
         req.getSession().setAttribute("login", login);
         req.getSession().setAttribute("name", user.getName());
@@ -97,27 +97,27 @@ public class Controller1 {
 
     @RequestMapping(value = "/orderitem", method = RequestMethod.POST)
     public String orderItem(@RequestParam(value = "login") String login, @RequestParam(value = "idGoods") Long idGoods, HttpServletRequest req) {
-        User user = (new UserServiceImp().getUserByLoginService(login));
-        req.setAttribute("goodsAll", goodsService.findAll());
+        user = (new UserServiceImp().getUserByLoginService(login));
+        req.setAttribute("goodsAll", new GoodsServiceImp().findAll());
         req.getSession().setAttribute("name", user.getName());
         req.getSession().setAttribute("login", user.getLogin());
         req.getSession().setAttribute("userId", user.getIdUser());
-        indentService.createIndent(new Indent(user.getIdUser(), idGoods));
+        new IndentServiceImp().createIndent(new Indent(user.getIdUser(), idGoods));
         return "goods";
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
     public String openCart(@RequestParam(value = "userId") Long userId, HttpServletRequest req) {
-        req.setAttribute("cartList", indentService.getCartList(userId));
-        req.setAttribute("sum", indentService.getSum(userId));
+        req.setAttribute("cartList", new IndentServiceImp().getCartList(userId));
+        req.setAttribute("sum", new IndentServiceImp().getSum(userId));
         return "cart";
     }
 
     @RequestMapping(value = "/orderall", method = RequestMethod.POST)
     public String orderAllChosen(@RequestParam(value = "userId") Long userId, HttpServletRequest req) {
         req.getSession().setAttribute("userId", userId);
-        req.setAttribute("sum", indentService.getSum(userId));
-        if (indentService.setIndentZero(userId)) {
+        req.setAttribute("sum", new IndentServiceImp().getSum(userId));
+        if (new IndentServiceImp().setIndentZero(userId)) {
             return "paid";
         } else {
             return "errorinpay";
@@ -126,7 +126,7 @@ public class Controller1 {
 
     @RequestMapping(value = "/paid", method = RequestMethod.POST)
     public String paidPage(@RequestParam(value = "userId") Long userId, HttpServletRequest req) {
-        req.setAttribute("sum", indentService.getSum(userId));
+        req.setAttribute("sum", new IndentServiceImp().getSum(userId));
         return "paid";
     }
 }
