@@ -9,10 +9,8 @@ import util.HibernateUtil;
 public class UserDAOImp implements UserDAO {
     private Transaction transaction = null;
 
-    User user;
-
     public User getUser(String login) {
-        user = new User();
+      User  user = new User();
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query query = session.createQuery("FROM User where login = '" + login + "'");
             user = (User) query.getSingleResult();
@@ -26,7 +24,7 @@ public class UserDAOImp implements UserDAO {
     }
 
     public User getUserByEmail(String email) {
-        user = new User();
+     User   user = new User();
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query query = session.createQuery("FROM User where email = '" + email + "'");
             user = (User) query.getSingleResult();

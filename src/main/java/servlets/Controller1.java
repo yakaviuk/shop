@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class Controller1 {
-    User user;
 
     @RequestMapping(value = "/")
     public String indexPage() {
@@ -31,8 +30,11 @@ public class Controller1 {
 
     @RequestMapping(value = "/checklogin", method = RequestMethod.POST)
     public String checklogin(@RequestParam(value = "login") String login, @RequestParam(value = "password") String password, HttpServletRequest req) {
-        if (PasswordUtils.verifyUserPassword(password, new UserServiceImp().getUserByLoginService(login.toLowerCase()).getPassword(), new UserServiceImp().getUserByLoginService(login.toLowerCase()).getSalt())){
-            user = (new UserServiceImp().getUserByLoginService(login.toLowerCase()));
+        User user1 = (new UserServiceImp().getUserByLoginService(login.toLowerCase()));
+        if (user1.getIdUser() == null) {
+            return "faillogin";
+        } else if (PasswordUtils.verifyUserPassword(password, new UserServiceImp().getUserByLoginService(login.toLowerCase()).getPassword(), new UserServiceImp().getUserByLoginService(login.toLowerCase()).getSalt())) {
+            User user = (new UserServiceImp().getUserByLoginService(login.toLowerCase()));
             req.setAttribute("goodsAll", new GoodsServiceImp().findAll());
             req.getSession().setAttribute("name", user.getName());
             req.getSession().setAttribute("login", user.getLogin());
@@ -45,7 +47,7 @@ public class Controller1 {
 
     @RequestMapping(value = "/goods", method = RequestMethod.POST)
     public String checklogin(@RequestParam(value = "login") String login, HttpServletRequest req) {
-        user = (new UserServiceImp().getUserByLoginService(login.toLowerCase()));
+        User user = (new UserServiceImp().getUserByLoginService(login.toLowerCase()));
         if (user != null) {
             req.setAttribute("goodsAll", new GoodsServiceImp().findAll());
             req.getSession().setAttribute("name", user.getName());
@@ -67,7 +69,7 @@ public class Controller1 {
                     if (password.equals(pswRepeat)) {
                         String salt = PasswordUtils.getSalt(30);
                         String securePassword = PasswordUtils.generateSecurePassword(password, salt);
-                        if (new UserServiceImp().createUser(new User(name, login.toLowerCase(), age, email, securePassword, salt))){
+                        if (new UserServiceImp().createUser(new User(name, login.toLowerCase(), age, email, securePassword, salt))) {
                             return "successregistration";
                         } else {
                             return "otherfail";
@@ -88,7 +90,7 @@ public class Controller1 {
 
     @RequestMapping(value = "/userinfo", method = RequestMethod.POST)
     public String checkRegistartion(@RequestParam(value = "login") String login, HttpServletRequest req) {
-        user = new UserServiceImp().getUserByLoginService(login.toLowerCase());
+        User user = new UserServiceImp().getUserByLoginService(login.toLowerCase());
         req.getAttribute(login);
         req.getSession().setAttribute("login", login);
         req.getSession().setAttribute("name", user.getName());
@@ -99,7 +101,7 @@ public class Controller1 {
 
     @RequestMapping(value = "/orderitem", method = RequestMethod.POST)
     public String orderItem(@RequestParam(value = "login") String login, @RequestParam(value = "idGoods") Long idGoods, HttpServletRequest req) {
-        user = (new UserServiceImp().getUserByLoginService(login));
+        User user = (new UserServiceImp().getUserByLoginService(login));
         req.setAttribute("goodsAll", new GoodsServiceImp().findAll());
         req.getSession().setAttribute("name", user.getName());
         req.getSession().setAttribute("login", user.getLogin());
