@@ -3,16 +3,12 @@ package util;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 import pojo.Goods;
 import pojo.Indent;
 import pojo.User;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.DriverManager;
+import java.io.*;
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
@@ -27,10 +23,9 @@ public class HibernateUtil {
             try {
                 Configuration configuration = new Configuration();
                 Properties settings = new Properties();
-                try (InputStream input = new FileInputStream("c:\\Users\\Ilya\\github\\repos\\projectShop\\src\\main\\resources\\jdbc.properties")) {
+                try (FileInputStream input = new FileInputStream("c:\\Users\\Ilya\\github\\repos\\projectShop\\src\\main\\resources\\jdbc.properties")) {
                     settings.load(input);
                 } catch (IOException e) {
-                    //e.printStackTrace();
                     log.error(e.getMessage());
                 }
                 //      settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
@@ -49,7 +44,6 @@ public class HibernateUtil {
                         .applySettings(configuration.getProperties()).build();
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             } catch (Exception e) {
-                //   e.printStackTrace();
                 log.error(e.getMessage());
             }
         }
